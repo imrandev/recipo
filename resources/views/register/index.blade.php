@@ -11,7 +11,7 @@
 
         <div class="card">
             <div class="card-body register-card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg">Create a New Account</p>
 
                 <form action="{{url('register/post')}}" method="POST">
                     {{ csrf_field() }}

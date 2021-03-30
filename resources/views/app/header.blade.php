@@ -70,18 +70,12 @@
     <script>
         $(window).on('load', function() {
             var url =  window.location.href;
-            if (url.indexOf("questions") > 0){
-                $('.left-menu-questions').addClass("active");
+            if (url.indexOf("ingredients") > 0){
+                $('.left-menu-ingredients').addClass("active");
             } else if (url.indexOf("users") > 0){
                 $('.left-menu-users').addClass("active");
-            } else if (url.indexOf("pending") > 0){
-                $('.left-menu-pending').addClass("active");
-            } else if (url.indexOf("withdraw") > 0){
-                $('.left-menu-withdraw').addClass("active");
-            } else if (url.indexOf("withdraw/request") > 0){
-                $('.left-menu-withdraw').addClass("active");
             } else {
-                $('.left-menu-dashboard').addClass("active");
+                $('.left-menu-recipe').addClass("active");
             }
         });
     </script>

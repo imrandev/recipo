@@ -1,9 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Question;
+use App\Http\Controllers\Base\LogicController;
 use App\User;
-use App\Withdraw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller {
+class UserController extends LogicController {
 
     public function index(){
         if(Auth::check()){
@@ -28,7 +27,8 @@ class UserController extends Controller {
         return Redirect::to("/login");
     }
 
-    public function postUser(Request $request){
+    public function post(Request $request): \Illuminate\Http\RedirectResponse
+    {
 
         if (!Auth::check()){
             return Redirect::to("/login");
@@ -37,6 +37,7 @@ class UserController extends Controller {
         $userId = $request->input('id');
 
         if ($userId != null){
+
             request()->validate([
                 'password' => 'required|min:6',
             ]);
@@ -76,7 +77,8 @@ class UserController extends Controller {
         ]);
     }
 
-    public function deleteUser($id){
+    public function delete($id): \Illuminate\Http\RedirectResponse
+    {
         if(Auth::check()){
             User::where('id', $id)->delete();
             return Redirect::back();
@@ -93,7 +95,8 @@ class UserController extends Controller {
         return Redirect::to("/login");
     }
 
-    public function updateUser(Request $request){
+    public function update(Request $request): \Illuminate\Http\RedirectResponse
+    {
         if (!Auth::check()){
             return Redirect::to("/login");
         }
@@ -103,7 +106,6 @@ class UserController extends Controller {
         ]);
 
         $id = $request->input('id');
-
         //update user
         $user = User::find($id);
         $user->name = $request->input('name');
@@ -111,11 +113,11 @@ class UserController extends Controller {
         $user->password = Hash::make($request->input('password'));
         $user->type = $request->input('type');
         $user->save();
-
         return Redirect::back();
     }
 
-    public function searchUser(Request $request){
+    public function search(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $query = $request->input('query');
         if (empty($query)){
             redirect()->back();

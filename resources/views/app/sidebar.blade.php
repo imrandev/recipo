@@ -12,7 +12,7 @@
                 <img src="{{asset('dist/img/avatar-default.png')}}" class="img-circle elevation-2" alt="UserAvatar">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Welcome, {{$activeUserName ?? 'User'}}</a>
+                <a href="#" class="d-block text-sm">Welcome, {{$activeUserName ?? 'User'}}</a>
             </div>
         </div>
 
@@ -24,10 +24,21 @@
 
                 {{--Recipe--}}
                 <li class="nav-item">
-                    <a href="{{ url('/') }}" class="nav-link left-menu-dashboard">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="{{ url('/') }}" class="nav-link left-menu-recipe">
+                        <i class="nav-icon fas fa-drum-steelpan"></i>
                         <p>
                             My Recipe
+                            {{--<span class="badge badge-info right">2</span>--}}
+                        </p>
+                    </a>
+                </li>
+
+                {{--Ingredients--}}
+                <li class="nav-item">
+                    <a href="{{ url('/ingredients') }}" class="nav-link left-menu-ingredients">
+                        <i class="nav-icon fas fa-drumstick-bite"></i>
+                        <p>
+                            Ingredients
                             {{--<span class="badge badge-info right">2</span>--}}
                         </p>
                     </a>

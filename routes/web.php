@@ -14,33 +14,41 @@ use Illuminate\Support\Facades\Route;
 */
 
 /*Auth*/
+
 Route::get('/login', 'AuthController@index');
 
 Route::get('/logout', 'AuthController@logout');
 
-Route::post('login/post', 'AuthController@postLogin');
+Route::post('login/post', 'AuthController@login');
 
-Route::get('/register', 'AuthController@register');
+Route::get('/register', 'AuthController@registerUI');
 
-Route::post('register/post', 'AuthController@postRegister');
+Route::post('register/post', 'AuthController@signUp');
 
 /*User*/
 
 Route::get('/users', 'UserController@index');
 
-Route::post('user/post', 'UserController@postUser');
+Route::post('user/post', 'UserController@post');
 
-Route::post('user/delete/{id}', 'UserController@deleteUser');
+Route::post('user/delete/{id}', 'UserController@delete');
 
-Route::post('user/update', 'UserController@updateUser');
+Route::post('user/update', 'UserController@update');
 
-Route::post('user/search', 'UserController@searchUser');
-
+Route::post('user/search', 'UserController@search');
 
 /* Recipe */
 
 Route::get('/', 'RecipeController@index');
 
-Route::post('recipe/post', 'RecipeController@postRecipe');
+Route::post('recipe/post', 'RecipeController@post');
 
-Route::post('recipe/delete/{id}', 'RecipeController@deleteRecipe');
+Route::post('recipe/delete/{id}', 'RecipeController@delete');
+
+/* Ingredient */
+
+Route::get('/ingredients', 'IngredientController@index');
+
+Route::post('ingredients/post', 'IngredientController@post');
+
+Route::post('ingredients/delete/{id}', 'IngredientController@delete');

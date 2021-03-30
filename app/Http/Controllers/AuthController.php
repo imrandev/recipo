@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Question;
+
+use App\Http\Controllers\Base\Controller;
+use App\Http\Controllers\Operations\IAuthOperation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -11,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\MessageBag;
 
-class AuthController extends Controller {
+class AuthController extends Controller implements IAuthOperation {
 
     public function index(){
         if(Auth::check()){
@@ -20,14 +22,14 @@ class AuthController extends Controller {
         return view('login.index');
     }
 
-    public function register(){
+    public function registerUI(){
         if(Auth::check()){
             return Redirect::back();
         }
         return view('register.index');
     }
 
-    public function postLogin(Request $request): RedirectResponse
+    public function login(Request $request): RedirectResponse
     {
         request()->validate([
             'username' => 'required',
@@ -45,7 +47,7 @@ class AuthController extends Controller {
         return Redirect::back()->withInput($request->except('password'))->withErrors($errors);
     }
 
-    public function postRegister(Request $request): RedirectResponse
+    public function signUp(Request $request): RedirectResponse
     {
         request()->validate([
             'email' => 'required|email|unique:users',
